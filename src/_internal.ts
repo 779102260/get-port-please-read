@@ -35,11 +35,14 @@ export function _tryPort(
   host: HostAddress,
 ): Promise<PortNumber | false> {
   return new Promise((resolve) => {
+    // 启动个服务，使用指定端口
     const server = createServer();
     server.unref();
+    // 如果端口不可用，则失败
     server.on("error", () => {
       resolve(false);
     });
+    // 如果能启动端口，关闭服务并返回此端口
     server.listen({ port, host }, () => {
       const { port } = server.address() as AddressInfo;
       server.close(() => {
@@ -65,6 +68,7 @@ export function _getLocalHosts(additional: HostAddress[]): HostAddress[] {
   return [...hosts];
 }
 
+// 挨个尝试端口，有能用的就返回
 export async function _findPort(
   ports: number[],
   host: HostAddress,
