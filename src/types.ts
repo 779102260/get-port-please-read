@@ -6,6 +6,7 @@ export interface GetPortOptions {
   portRange: [from: number, to: number];
   alternativePortRange: [from: number, to: number];
   host: string;
+  /** 是否打印日志 */
   verbose?: boolean;
   public?: boolean;
 }
