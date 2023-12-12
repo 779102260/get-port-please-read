@@ -71,6 +71,7 @@ export async function getPort(
   let availablePort = await _findPort(portsToCheck, options.host);
 
   // Try fallback port range
+  // 尝试从备用端口范围（alternativePortRange）中寻找
   if (!availablePort && options.alternativePortRange.length > 0) {
     availablePort = await _findPort(
       _generateRange(...options.alternativePortRange),
@@ -85,6 +86,7 @@ export async function getPort(
   }
 
   // Try random port
+  // 随机使用一个端口
   if (!availablePort && _userOptions.random !== false) {
     availablePort = await getRandomPort(options.host);
     if (availablePort) {
@@ -93,6 +95,7 @@ export async function getPort(
   }
 
   // Throw error if no port is available
+  // 只能报错了
   if (!availablePort) {
     const triedRanges = [
       options.port,
