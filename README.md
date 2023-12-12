@@ -81,6 +81,7 @@ Extended port range to check.
 ### `alternativePortRange`
 
 Alternative port range to check as fallback when non of the ports are available. Default is `[3000, 3100]` (only when `port` in unspecified.)
+备用端口范围，当没有可用端口时作为回退选项。默认值为 [3000, 3100] （仅当 port 未指定时）。
 
 ### `host`
 
