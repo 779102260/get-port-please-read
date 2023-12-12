@@ -49,6 +49,7 @@ export async function getPort(
   }
 
   // Generate list of ports to check
+  // 构建端口列表
   const portsToCheck: PortNumber[] = [
     options.port,
     ...options.ports,
@@ -65,6 +66,8 @@ export async function getPort(
   });
 
   // Try to find a port
+  // 寻找可用的端口：未占用且非常用端口
+  // 未占用端口的检测原理：通过net模块尝试使用端口，看看能不能启动服务
   let availablePort = await _findPort(portsToCheck, options.host);
 
   // Try fallback port range
